@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_cases
+    description: "Staged cases loaded from dbt seed. Cleaned types and standardized fields."
+
+    columns:
+      - name: case_number
+        tests:
+          - not_null
+          - unique
+
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['CANCELLED', 'COMPLETED', 'IN_PROGRESS']
+
+      - name: application_submitted_timestamp
+        tests:
+          - not_null
+
+      - name: loan_amount
+        tests:
+          - not_null

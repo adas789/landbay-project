@@ -31,12 +31,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   landbay_dbt:
-    # Config indicated by + and applies to all files under models/example/
-    example:
+    staging:
       +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+
 seeds:
-  landbay-project:
-    +schema: landbay_raw
+  landbay_dbt:
+    +schema: raw
     +quote_columns: false
     cases:
       +enabled: true
