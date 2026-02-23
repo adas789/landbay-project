@@ -6,9 +6,9 @@ This package bundles a lightweight CLI that reads `seeds/cases.csv`, applies the
 1. Clone the repository so that `cli/` and `landbay_dbt/` sit side by side in the workspace root.
 2. Install dependencies with the UV-managed tooling (the `requirements.txt` file already lists `pandas`, `matplotlib`, `python-dateutil`, and `uv`):
    ```
-   uv run pip install -r requirements.txt
+   uv run python -m pip install -r requirements.txt
    ```
-   Run this command only once after cloning; it populates the `.venv/` directory that `uv` uses under the hood.
+   Run this command only once after cloning; it populates the `.venv/` directory that `uv` uses under the hood. If the `pip` module is missing inside that interpreter, run `uv run python -m ensurepip --upgrade` before retrying the install.
 3. Enter the virtual environment with `uv activate` (Windows) or `uv shell`, or prefix each invocation with `uv run` when you just need to execute a single command.
 
 ### Running the CLI
