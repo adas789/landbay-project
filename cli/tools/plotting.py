@@ -1,17 +1,13 @@
 from __future__ import annotations
 
-"""Matplotlib helpers for rendering the completion histogram.
-
-This module isolates the visual decisions (figure size, colors, labels) so the
-main CLI can stay focused on the data pipeline and simply request an output path.
-"""
+"""Matplotlib helpers for rendering the completion histogram."""
 
 from datetime import date
 from pathlib import Path
 from typing import Mapping
 
 import matplotlib
-matplotlib.use("Agg")  # ensure headless execution
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
@@ -21,7 +17,7 @@ def render_plot(
     category: str | None,
     output_dir: Path,
     override_path: Path | None = None,
-    ) -> Path:
+) -> Path:
     """Create the plot and return the location of the saved PNG."""
     output_dir.mkdir(parents=True, exist_ok=True)
     labels = sorted(buckets.keys())

@@ -10,9 +10,7 @@ logs/
 *.log
 
 # --- Data / raw files ---
-data/raw/
-*.csv
-landbay_dbt/plots/
+cli/plots/
 
 
 # --- Secrets / local config ---

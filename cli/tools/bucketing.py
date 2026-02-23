@@ -1,10 +1,6 @@
 from __future__ import annotations
 
-"""Bucket completed cases by the number of calendar months it took to finish.
-
-Only records reporting a non-negative month delta are counted; the caller can
-inspect the dict for zero-frequency months if necessary.
-"""
+"""Bucket completed cases by the number of calendar months it took to finish."""
 
 from collections import Counter
 from typing import Iterable

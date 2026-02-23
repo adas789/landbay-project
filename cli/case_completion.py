@@ -1,10 +1,6 @@
 from __future__ import annotations
 
-"""Entry point that orchestrates the case completion CLI workflow.
-
-This module wires up argument parsing, data loading, filtering, bucketing, and
-plotting so the responsibilities described in the tools directory stay isolated.
-"""
+"""Entry point wiring for the case completion CLI."""
 
 from pathlib import Path
 from typing import Sequence
@@ -15,9 +11,24 @@ from .tools.filtering import filter_records
 from .tools.loader import load_case_records
 from .tools.plotting import render_plot
 
-PACKAGE_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SEED_PATH = PACKAGE_ROOT / "seeds" / "cases.csv"
-DEFAULT_PLOT_DIR = PACKAGE_ROOT / "plots"
+
+CLI_ROOT = Path(__file__).resolve().parent
+
+
+def _find_dbt_project_root() -> Path:
+    for parent in (CLI_ROOT, *CLI_ROOT.parents):
+        project_file = parent / "dbt_project.yml"
+        if project_file.is_file():
+            return parent
+        nested_project = parent / "landbay_dbt" / "dbt_project.yml"
+        if nested_project.is_file():
+            return nested_project.parent
+    raise FileNotFoundError("Could not locate dbt_project.yml near the CLI package location.")
+
+
+DBT_PROJECT_ROOT = _find_dbt_project_root()
+DEFAULT_SEED_PATH = DBT_PROJECT_ROOT / "seeds" / "cases.csv"
+DEFAULT_PLOT_DIR = CLI_ROOT / "plots"
 
 
 def main(argv: Sequence[str] | None = None) -> int:

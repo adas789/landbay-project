@@ -1,11 +1,6 @@
 from __future__ import annotations
 
-"""Domain value objects used by the case completion CLI.
-
-This module exposes the lightweight `CaseRecord` dataclass and encapsulates
-any derived metrics so other layers can operate in terms of business concepts
-without re-implementing the calendar-month logic.
-"""
+"""Domain value objects used by the case completion CLI."""
 
 from dataclasses import dataclass
 from datetime import date
