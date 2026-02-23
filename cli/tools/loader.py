@@ -1,10 +1,6 @@
 from __future__ import annotations
 
-"""Helpers for loading the truth CSV and transforming rows into domain records.
-
-The loader applies assertive cleaning steps that mirror the dbt staging model
-and keeps the rest of the CLI focused on filtering, bucketing, and plotting.
-"""
+"""Helpers for loading the truth CSV and transforming rows into domain records."""
 
 from datetime import date, datetime
 from pathlib import Path
