@@ -16,9 +16,9 @@ cleaned as (
         upper(trim(status)) as status,
         cast(loan_amount as float64) as loan_amount,
         --- Accepts second fractions of a second, and trims whitespace
-        PARSE_TIMESTAMP('%F %H:%M:%E*S', TRIM(application_submitted_date)) AS application_submitted_timestamp,
-        PARSE_TIMESTAMP('%F %H:%M:%E*S', TRIM(completed_date)) AS completed_timestamp,
-        PARSE_TIMESTAMP('%F %H:%M:%E*S', TRIM(cancellation_date)) AS cancellation_timestamp
+        SAFE_CAST(PARSE_TIMESTAMP('%F %H:%M:%E*S', TRIM(application_submitted_date)) AS DATE) AS submitted_date,
+        SAFE_CAST(PARSE_TIMESTAMP('%F %H:%M:%E*S', TRIM(completed_date)) AS DATE) AS completed_date,
+        SAFE_CAST(PARSE_TIMESTAMP('%F %H:%M:%E*S', TRIM(cancellation_date)) AS DATE) AS cancellation_date
     
     from src
 
