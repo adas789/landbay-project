@@ -1,0 +1,21 @@
+# --- Python / uv virtual environment ---
+.venv/
+__pycache__/
+*.pyc
+
+# --- dbt ---
+target/
+dbt_packages/
+logs/
+*.log
+
+# --- Data / raw files ---
+data/raw/
+*.csv
+landbay_dbt/plots/
+
+
+# --- Secrets / local config ---
+.env
+.env.*
+profiles.yml    
